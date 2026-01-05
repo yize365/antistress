@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>心灵暖宝 | 抗压内核测试 - 答题</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container test-container">
+        <div class="rain-background"></div>
+        
+        <header class="test-header">
+            <h1><i class="fas fa-cloud-rain"></i> 抗压内核测试</h1>
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+                <div class="progress-text" id="progress-text">1/8</div>
+            </div>
+        </header>
+        
+        <main class="test-content">
+            <div class="question-card" id="question-card">
+                <div class="question-header">
+                    <h2 id="question-number">第1题</h2>
+                    <p id="question-text">一个重要的项目截止日突然提前，窗外正下着大雨。你的第一反应是？</p>
+                </div>
+                
+                <div class="question-body">
+                    <div class="options-container" id="options-container">
+                        <!-- 选项将通过JavaScript动态生成 -->
+                    </div>
+                    
+                    <div class="navigation-buttons">
+                        <button id="prev-btn" class="btn-secondary">
+                            <i class="fas fa-arrow-left"></i> 上一题
+                        </button>
+                        <button id="next-btn" class="btn-primary" disabled>
+                            下一题 <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="test-footer">
+            <p>请根据你的第一感觉选择，测试结果将更准确</p>
+        </footer>
+    </div>
+
+    <script src="js/invitation-config.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // 检查是否已通过邀请码验证
+        document.addEventListener('DOMContentLoaded', async function() {
+            const invitationCode = localStorage.getItem('antistressInvitationCode');
+            
+            const isValid = await utils.validateInvitationCode(invitationCode);
+            if (!invitationCode || !isValid) {
+                // 如果没有有效的邀请码，跳转回首页
+                alert('请先输入有效的邀请码');
+                window.location.href = 'index.html';
+                return;
+            }
+            
+            // 测试题数据
+            const questions = [
+                {
+                    id: 1,
+                    text: "一个重要的项目截止日突然提前，窗外正下着大雨。你的第一反应是？",
+                    options: [
+                        { id: "A", text: "心头一紧，马上在脑子里重新规划所有步骤。", type: "fortress" },
+                        { id: "B", text: "先泡杯热茶，坐在窗边深呼吸几分钟，理清头绪。", type: "harbor" },
+                        { id: "C", text: "立刻打开电脑列出待办清单，让自己先'动起来'。", type: "beacon" },
+                        { id: "D", text: "有点烦躁，想暂时刷会儿手机或小睡一下，逃避一会儿。", type: "flow" }
+                    ]
+                },
+                {
+                    id: 2,
+                    text: "雨天通勤，被堵在路上寸步难行，眼看要迟到。你会？",
+                    options: [
+                        { id: "A", text: "不断看时间，焦虑地刷新导航，责怪天气。", type: "fortress" },
+                        { id: "B", text: "打开播客或音乐，趁机听听喜欢的内容，既来之则安之。", type: "harbor" },
+                        { id: "C", text: "立刻给同事或上司发消息说明情况，并思考如何补救迟到的时间。", type: "beacon" },
+                        { id: "D", text: "观察窗外其他行人和车辆，思考城市交通问题，转移注意力。", type: "flow" }
+                    ]
+                },
+                {
+                    id: 3,
+                    text: "因为一个失误被批评，下班时心情低落，雨下个不停。你最想？",
+                    options: [
+                        { id: "A", text: "一个人去健身房挥汗如雨，或用高强度运动发泄。", type: "fortress" },
+                        { id: "B", text: "约信任的朋友出来，在温暖的咖啡馆里聊聊这件事。", type: "harbor" },
+                        { id: "C", text: "回家后，独自复盘整个事情，写下自己的问题和改进计划。", type: "beacon" },
+                        { id: "D", text: "钻进被窝，看一部无脑喜剧或吃零食，让自己忘掉不愉快。", type: "flow" }
+                    ]
+                },
+                {
+                    id: 4,
+                    text: "连续多日的阴雨让你感到有些萎靡，你会主动做什么来调整？",
+                    options: [
+                        { id: "A", text: "坚持原有的学习和工作计划，用规律性对抗惰性。", type: "fortress" },
+                        { id: "B", text: "给自己做一顿精致的晚餐，点上香薰蜡烛，创造'小确幸'。", type: "harbor" },
+                        { id: "C", text: "研究一下'季节性情绪调节'的方法，并尝试实践。", type: "beacon" },
+                        { id: "D", text: "允许自己彻底放松一天，不设目标，想睡就睡，随心所欲。", type: "flow" }
+                    ]
+                },
+                {
+                    id: 5,
+                    text: "面对一个巨大的压力挑战（如重要考试），雨夜，你会？",
+                    options: [
+                        { id: "A", text: "更倾向于独自钻研，反复练习，直到自己完全掌握。", type: "fortress" },
+                        { id: "B", text: "整理好问题，向老师、前辈或朋友寻求有针对性的指导。", type: "harbor" },
+                        { id: "C", text: "去图书馆或自习室，在众人学习的氛围中找到动力。", type: "beacon" },
+                        { id: "D", text: "需要先和朋友倾诉一番自己的紧张，获得鼓励后才能安心学习。", type: "flow" }
+                    ]
+                },
+                {
+                    id: 6,
+                    text: "雨天，你读到一篇关于'职场35岁危机'的焦虑文章，你的想法是？",
+                    options: [
+                        { id: "A", text: "感到代入和危机感，立刻思考自己的职业规划是否有漏洞。", type: "fortress" },
+                        { id: "B", text: "认为这是普遍社会现象，个人焦虑无用，不如专注提升自身技能。", type: "harbor" },
+                        { id: "C", text: "分析文章的观点和数据是否可靠，将其作为了解行业的一个视角。", type: "beacon" },
+                        { id: "D", text: "马上关掉，不想让负面信息影响自己当下的心情。", type: "flow" }
+                    ]
+                },
+                {
+                    id: 7,
+                    text: "如果正在经历一段漫长而充满压力的时期，你靠什么支撑？",
+                    options: [
+                        { id: "A", text: "清晰的阶段性目标和达成目标后的自我奖励。", type: "fortress" },
+                        { id: "B", text: "家人、伴侣或挚友日常的陪伴和情感支持。", type: "harbor" },
+                        { id: "C", text: "内心深处'相信自己一定能挺过去'的信念感。", type: "beacon" },
+                        { id: "D", text: "发展一个业余爱好（如烹饪、手工），作为压力的出口。", type: "flow" }
+                    ]
+                },
+                {
+                    id: 8,
+                    text: "一个理想的、完全放松的雨天，你更愿意如何度过？",
+                    options: [
+                        { id: "A", text: "窗边看雨打芭蕉", type: "fortress" },
+                        { id: "B", text: "被窝里听雨入眠", type: "harbor" },
+                        { id: "C", text: "咖啡馆看行人撑伞", type: "beacon" },
+                        { id: "D", text: "书房看书听雨", type: "flow" }
+                    ]
+                }
+            ];
+
+            // 存储用户答案
+            let userAnswers = new Array(questions.length).fill(null);
+            let currentQuestionIndex = 0;
+
+            const questionNumber = document.getElementById('question-number');
+            const questionText = document.getElementById('question-text');
+            const optionsContainer = document.getElementById('options-container');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const progressBar = document.getElementById('progress-bar');
+            const progressText = document.getElementById('progress-text');
+
+            // 初始化显示第一题
+            showQuestion(currentQuestionIndex);
+
+            // 显示指定问题
+            function showQuestion(index) {
+                const question = questions[index];
+                questionNumber.textContent = `第${question.id}题`;
+                questionText.textContent = question.text;
+                
+                // 清空选项容器
+                optionsContainer.innerHTML = '';
+                
+                // 生成选项
+                question.options.forEach(option => {
+                    const optionElement = document.createElement('div');
+                    optionElement.className = 'option';
+                    if (userAnswers[index] === option.id) {
+                        optionElement.classList.add('selected');
+                    }
+                    
+                    optionElement.innerHTML = `
+                        <div class="option-id">${option.id}</div>
+                        <div class="option-text">${option.text}</div>
+                    `;
+                    
+                    optionElement.addEventListener('click', () => {
+                        selectOption(option.id);
+                    });
+                    
+                    optionsContainer.appendChild(optionElement);
+                });
+                
+                // 更新进度条
+                const progress = ((index + 1) / questions.length) * 100;
+                progressBar.style.width = `${progress}%`;
+                progressText.textContent = `${index + 1}/${questions.length}`;
+                
+                // 更新按钮状态
+                prevBtn.disabled = index === 0;
+                nextBtn.disabled = userAnswers[index] === null;
+                
+                // 如果是最后一题，修改按钮文本
+                if (index === questions.length - 1) {
+                    nextBtn.innerHTML = '查看结果 <i class="fas fa-chart-bar"></i>';
+                } else {
+                    nextBtn.innerHTML = '下一题 <i class="fas fa-arrow-right"></i>';
+                }
+            }
+
+            // 选择选项
+            function selectOption(optionId) {
+                userAnswers[currentQuestionIndex] = optionId;
+                
+                // 更新选项样式
+                const options = document.querySelectorAll('.option');
+                options.forEach(option => {
+                    option.classList.remove('selected');
+                    if (option.querySelector('.option-id').textContent === optionId) {
+                        option.classList.add('selected');
+                    }
+                });
+                
+                // 启用下一题按钮
+                nextBtn.disabled = false;
+            }
+
+            // 上一题按钮事件
+            prevBtn.addEventListener('click', () => {
+                if (currentQuestionIndex > 0) {
+                    currentQuestionIndex--;
+                    showQuestion(currentQuestionIndex);
+                }
+            });
+
+            // 下一题按钮事件
+            nextBtn.addEventListener('click', () => {
+                if (currentQuestionIndex < questions.length - 1) {
+                    currentQuestionIndex++;
+                    showQuestion(currentQuestionIndex);
+                } else {
+                    // 最后一题，计算并跳转到结果页面
+                    calculateResult();
+                }
+            });
+
+            // 计算测试结果
+            function calculateResult() {
+                // 统计每种类型的数量
+                const typeCounts = {
+                    fortress: 0,
+                    harbor: 0,
+                    beacon: 0,
+                    flow: 0
+                };
+                
+                // 遍历答案，统计类型
+                userAnswers.forEach((answerId, index) => {
+                    if (answerId) {
+                        const question = questions[index];
+                        const selectedOption = question.options.find(opt => opt.id === answerId);
+                        if (selectedOption) {
+                            typeCounts[selectedOption.type]++;
+                        }
+                    }
+                });
+                
+                // 找出数量最多的类型
+                let maxCount = 0;
+                let resultType = 'fortress'; // 默认值
+                
+                for (const type in typeCounts) {
+                    if (typeCounts[type] > maxCount) {
+                        maxCount = typeCounts[type];
+                        resultType = type;
+                    }
+                }
+                
+                // 处理平局情况：优先选择最后一题的类型
+                const tiedTypes = [];
+                for (const type in typeCounts) {
+                    if (typeCounts[type] === maxCount) {
+                        tiedTypes.push(type);
+                    }
+                }
+                
+                if (tiedTypes.length > 1) {
+                    // 获取最后一题的选择类型
+                    const lastAnswer = userAnswers[questions.length - 1];
+                    const lastQuestion = questions[questions.length - 1];
+                    const lastSelectedOption = lastQuestion.options.find(opt => opt.id === lastAnswer);
+                    
+                    if (lastSelectedOption && tiedTypes.includes(lastSelectedOption.type)) {
+                        resultType = lastSelectedOption.type;
+                    }
+                }
+                
+                // 将结果存储到localStorage，然后跳转到结果页面
+                localStorage.setItem('antistressResult', JSON.stringify({
+                    type: resultType,
+                    counts: typeCounts,
+                    answers: userAnswers,
+                    invitationCode: invitationCode
+                }));
+                
+                window.location.href = 'result.html';
+            }
+        });
+    </script>
+</body>
+</html>

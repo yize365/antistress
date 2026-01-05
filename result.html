@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>心灵暖宝 | 抗压内核测试 - 结果</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container result-container">
+        <div class="rain-background"></div>
+        
+        <header class="test-header">
+            <h1><i class="fas fa-cloud-rain"></i> 心灵暖宝 | 抗压内核测试</h1>
+            <p class="subtitle">你的专属分析报告</p>
+        </header>
+        
+        <main class="result-content">
+            <div class="result-card">
+                <div class="result-header" id="result-header">
+                </div>
+                
+                <div class="result-body">
+                    <div class="result-type" id="result-type">
+                    </div>
+                    
+                    <div class="result-chart" id="result-chart">
+                    </div>
+                    
+                    <div class="result-details">
+                        <div class="detail-section">
+                            <h3><i class="fas fa-star"></i> 核心解读</h3>
+                            <p id="core-interpretation"></p>
+                        </div>
+                        
+                        <div class="detail-section">
+                            <h3><i class="fas fa-check-circle"></i> 你的优势</h3>
+                            <ul id="advantages-list"></ul>
+                        </div>
+                        
+                        <div class="detail-section">
+                            <h3><i class="fas fa-exclamation-triangle"></i> 潜在盲点</h3>
+                            <ul id="blindspots-list"></ul>
+                        </div>
+                        
+                        <div class="detail-section">
+                            <h3><i class="fas fa-lightbulb"></i> 行动建议</h3>
+                            <p id="action-advice"></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="result-footer">
+                    <div class="action-buttons">
+                        <button id="retake-btn" class="btn-secondary">
+                            <i class="fas fa-redo"></i> 重新测试
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="test-footer">
+            <p>© 2025 心灵暖宝 | 趣味心理测试 | 仅供娱乐参考</p>
+            <p class="shop-link">
+                <i class="fas fa-heart"></i> 
+                <a href="https://www.xiaohongshu.com/user/profile/671f5878000000000b033f39?xsec_token=YB7n700r-2H6XaOHvXP_rWvjpp7Wq-ZeBEd4UOBFi8HhE%3D&xsec_source=app_share&xhsshare=&shareRedId=OD0zRjg9O0E2NzUyOTgwNjZFOTo3SzlC&apptime=1767598872&share_id=9141b4fa2bbd4ef69b59ad6c760867f5" target="_blank">关注我的小红书</a>
+            </p>
+        </footer>
+    </div>
+
+    <script src="js/invitation-config.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        const resultData = {
+            fortress: {
+                title: "堡垒型抗压者",
+                slogan: "秩序为墙，韧性为核",
+                icon: "fas fa-shield-alt",
+                color: "#4a6fa5",
+                coreInterpretation: "你是<strong>内在秩序的构建者</strong>。面对压力，你的本能反应是巩固'城墙'——制定计划、严格执行、依靠个人能力。你像一棵雨中的大树，通过深扎根系（内在实力）来保持稳定。你的力量来源于对目标的坚定和对自我的掌控，这让你在逆境中格外可靠。",
+                advantages: [
+                    "极强的责任感和执行力",
+                    "在结构化任务中表现出色",
+                    "善于独自攻坚，独立性强",
+                    "面对明确目标时意志坚定"
+                ],
+                blindspots: [
+                    "可能过于刚性，不善于求助",
+                    "当计划被打乱时容易产生强烈焦虑",
+                    "长期自我加压可能导致耗竭",
+                    "可能忽视情感需求，显得不够灵活"
+                ],
+                actionAdvice: "学习为你的'堡垒'开一扇窗。尝试主动分享你的压力，哪怕只是倾诉；练习接受计划外的变化，将其视为锻炼弹性的机会；定期检查自己的压力水平，避免'硬扛到底'。"
+            },
+            harbor: {
+                title: "港湾型抗压者",
+                slogan: "疗愈为港，联结为锚",
+                icon: "fas fa-home",
+                color: "#6b8e23",
+                coreInterpretation: "你是<strong>情绪能量的修复者</strong>。你认为应对压力的关键不是硬扛，而是及时'回港检修'。你需要舒适的环境、亲密的支持和彻底的放松来恢复电量。你像一间温暖的山间小屋，懂得用炉火（治愈感）和热茶（联结）驱散潮湿与寒冷。这种对自我需求的敏锐觉察，是你重要的天赋。",
+                advantages: [
+                    "共情能力强，善于建立深度关系",
+                    "拥有出色的自我关怀和疗愈能力",
+                    "能为自己和他人营造安全氛围",
+                    "情绪感知敏锐，善解人意"
+                ],
+                blindspots: [
+                    "恢复周期可能较长，在紧急压力下显得准备不足",
+                    "有时会因过度回避而延误问题的解决",
+                    "可能过度依赖外部环境或他人支持",
+                    "在需要快速决策时可能犹豫不决"
+                ],
+                actionAdvice: "明确'恢复'与'逃避'的界限。为自己设定一个'充电时限'，并建立一个小小的启动仪式（如'听完三首歌后，我必须开始处理那件事'），帮助自己从港湾平稳驶回航道。同时，发展一些主动应对压力的技能。"
+            },
+            beacon: {
+                title: "航标型抗压者",
+                slogan: "洞察为光，理性为塔",
+                icon: "fas fa-lightbulb",
+                color: "#ff8c00",
+                coreInterpretation: "你是<strong>压力图景的导航员</strong>。当他人被情绪淹没时，你却能抽离出来，将压力视为一个可分析的'客体'。你善于搜集信息、寻找参照系（榜样或理论）、并从宏观视角赋予压力意义。你就像海岸线上的灯塔，在迷雾（混乱情绪）中提供稳定的光束（清晰思路），为自己和他人定位。",
+                advantages: [
+                    "冷静理性，不易陷入情绪化决策",
+                    "学习能力强，善于从信息中寻找解决方案",
+                    "在复杂局面中能抓住关键问题",
+                    "能从宏观视角看待问题，赋予压力意义"
+                ],
+                blindspots: [
+                    "可能过度依赖分析导致'行动瘫痪'",
+                    "给人的感觉有时过于疏离，忽略了情感联结",
+                    "容易陷入'意义危机'，过度思考",
+                    "可能忽视身体和情感的实际需求"
+                ],
+                actionAdvice: "允许自己偶尔'降落在甲板上'。在分析之后，设定一个最小的、可立即执行的动作；尝试先表达共情（'这确实让人难受'），再提供分析，让他人更能接受你的'导航'；关注身体信号，避免过度思考导致的疲劳。"
+            },
+            flow: {
+                title: "心流型抗压者",
+                slogan: "专注为舟，行动为桨",
+                icon: "fas fa-water",
+                color: "#20b2aa",
+                coreInterpretation: "你是<strong>焦虑的转化者</strong>。你的抗压方式不是静态的承受或思考，而是动态的创造与投入。压力对你而言，更像是一种需要被引导的能量。当你专注于一项有意义、有挑战的任务时（工作、爱好、学习），你会进入'心流'状态，压力随之被忘却或转化为成果。你像一条奔腾的河流，在流动中保持生机与清澈。",
+                advantages: [
+                    "生产力高，能在压力下创造价值",
+                    "通过掌控感和成就感获得激励",
+                    "拥有将焦虑转化为动力的潜能",
+                    "适应性强，能在行动中调整策略"
+                ],
+                blindspots: [
+                    "可能用'忙碌'掩盖真正需要面对的情感问题",
+                    "容易忽视身心发出的疲惫信号，直到burnout",
+                    "成果若不及预期，会带来双倍挫败感",
+                    "可能缺乏深度反思，重复相似模式"
+                ],
+                actionAdvice: "为你的'心流'设置堤坝与监测站。定期检查自己的忙碌是'有效产出'还是'逃避性忙碌'；培养与工作完全无关的、纯粹享受的爱好，作为压力的缓冲区；建立强制休息机制，避免过度消耗。"
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', async function() {
+            const invitationCode = localStorage.getItem('antistressInvitationCode');
+            
+            const isValid = await utils.validateInvitationCode(invitationCode);
+            if (!invitationCode || !isValid) {
+                alert('请先输入有效的邀请码');
+                window.location.href = 'index.html';
+                return;
+            }
+            
+            const resultString = localStorage.getItem('antistressResult');
+            
+            if (!resultString) {
+                window.location.href = 'test.html';
+                return;
+            }
+            
+            const result = JSON.parse(resultString);
+            const userType = result.type;
+            const typeCounts = result.counts;
+            
+            const typeData = resultData[userType];
+            
+            const resultHeader = document.getElementById('result-header');
+            resultHeader.innerHTML = `
+                <h2><i class="${typeData.icon}"></i> ${typeData.title}</h2>
+                <p class="slogan">${typeData.slogan}</p>
+            `;
+            resultHeader.style.borderLeftColor = typeData.color;
+            
+            const resultType = document.getElementById('result-type');
+            resultType.innerHTML = `
+                <div class="type-icon" style="background-color: ${typeData.color}">
+                    <i class="${typeData.icon}"></i>
+                </div>
+                <div class="type-desc">
+                    <h3>你的抗压内核是：<span style="color: ${typeData.color}">${typeData.title}</span></h3>
+                    <p>在本次测试的8道题中，你有 <strong>${typeCounts[userType]}</strong> 道题的选择符合此类型特征。</p>
+                </div>
+            `;
+            
+            const resultChart = document.getElementById('result-chart');
+            resultChart.innerHTML = `
+                <h3><i class="fas fa-chart-radar"></i> 抗压能量四维图</h3>
+                <div class="radar-container">
+                    <canvas id="radarChart" width="300" height="300"></canvas>
+                </div>
+            `;
+            
+            document.getElementById('core-interpretation').innerHTML = typeData.coreInterpretation;
+            
+            const advantagesList = document.getElementById('advantages-list');
+            typeData.advantages.forEach(advantage => {
+                const li = document.createElement('li');
+                li.textContent = advantage;
+                advantagesList.appendChild(li);
+            });
+            
+            const blindspotsList = document.getElementById('blindspots-list');
+            typeData.blindspots.forEach(blindspot => {
+                const li = document.createElement('li');
+                li.textContent = blindspot;
+                blindspotsList.appendChild(li);
+            });
+            
+            document.getElementById('action-advice').textContent = typeData.actionAdvice;
+            
+            document.getElementById('retake-btn').addEventListener('click', function() {
+                if (confirm('确定要重新测试吗？当前结果将会丢失。')) {
+                    window.location.href = 'test.html';
+                }
+            });
+            
+            setTimeout(() => {
+                drawRadarChart(typeCounts, typeData.color);
+            }, 100);
+        });
+
+        function drawRadarChart(counts, color) {
+            const ctx = document.getElementById('radarChart').getContext('2d');
+            
+            const maxCount = 8;
+            const dataValues = [
+                (counts.fortress / maxCount) * 100,
+                (counts.harbor / maxCount) * 100,
+                (counts.beacon / maxCount) * 100,
+                (counts.flow / maxCount) * 100
+            ];
+            
+            const radarChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['韧性', '恢复', '洞察', '专注'],
+                    datasets: [{
+                        label: '你的抗压能量',
+                        data: dataValues,
+                        backgroundColor: `${color}20`,
+                        borderColor: color,
+                        pointBackgroundColor: color,
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: color,
+                        borderWidth: 2,
+                        pointRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: false,
+                    maintainAspectRatio: false,
+                    scale: {
+                        ticks: {
+                            beginAtZero: true,
+                            max: 100,
+                            min: 0,
+                            stepSize: 25,
+                            backdropColor: 'rgba(255, 255, 255, 0.8)'
+                        },
+                        pointLabels: {
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            },
+                            color: '#333'
+                        },
+                        gridLines: {
+                            color: 'rgba(0, 0, 0, 0.1)'
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+            
+            return radarChart;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>抗压内核测试 - 入口</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container entry-container">
+        <div class="rain-background"></div>
+        
+        <header class="test-header">
+            <h1><i class="fas fa-cloud-rain"></i> 心灵暖宝 | 抗压内核测试</h1>
+            <p class="subtitle">测一下你面对压力时的真实力量</p>
+        </header>
+        
+        <main class="entry-content">
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-envelope"></i> 请输入邀请码进入测试</h2>
+                    <p>本测试为邀请制，请输入有效的邀请码开始测试</p>
+                </div>
+                
+                <div class="card-body">
+                    <div class="invitation-section">
+                        <div class="invitation-info">
+                            <h3><i class="fas fa-info-circle"></i> 如何获取邀请码？</h3>
+                            <p>邀请码可通过以下方式获取：</p>
+                            <ul>
+                                <li>关注我们的社交媒体账号获取</li>
+                                <li>参与线上活动获得</li>
+                                <li>好友分享赠送</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="invitation-code"><i class="fas fa-key"></i> 邀请码</label>
+                            <input type="text" id="invitation-code" placeholder="请输入邀请码" maxlength="10">
+                            <div class="error-message" id="error-message"></div>
+                        </div>
+                        
+                        <button id="start-test" class="btn-primary">
+                            <i class="fas fa-play-circle"></i> 开始测试
+                        </button>
+                        
+                        <div class="test-info">
+                        <h3><i class="fas fa-question-circle"></i> 测试说明</h3>
+                        <ul>
+                            <li>本测试共有8道情景选择题</li>
+                            <li>请根据你的第一感觉选择，无需过多思考</li>
+                            <li>测试完成后将获得你的专属抗压内核分析报告</li>
+                            <li>测试时间约2-3分钟</li>
+                            <li>测试结果仅供参考，不做专业诊断依据</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="test-footer">
+            <p>© 2025 心灵暖宝 | 趣味心理测试 | 仅供娱乐参考</p>
+        </footer>
+    </div>
+
+    <script src="js/invitation-config.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const codeInput = document.getElementById('invitation-code');
+            const startButton = document.getElementById('start-test');
+            const errorMessage = document.getElementById('error-message');
+            
+            startButton.addEventListener('click', async function() {
+                const userInput = codeInput.value.trim().toUpperCase();
+                
+                if (userInput === '') {
+                    errorMessage.textContent = '请输入邀请码';
+                    errorMessage.style.color = '#e74c3c';
+                    return;
+                }
+                
+                const isValid = await utils.validateInvitationCode(userInput);
+                if (!isValid) {
+                    errorMessage.textContent = '邀请码无效，请重新输入';
+                    errorMessage.style.color = '#e74c3c';
+                    return;
+                }
+                
+                localStorage.setItem('antistressInvitationCode', userInput);
+                
+                window.location.href = 'test.html';
+            });
+            
+            codeInput.addEventListener('keyup', function(event) {
+                if (event.key === 'Enter') {
+                    startButton.click();
+                }
+                
+                if (errorMessage.textContent) {
+                    errorMessage.textContent = '';
+                }
+            });
+        
+        });
+    </script>
+</body>
+</html>
